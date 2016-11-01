@@ -1,38 +1,41 @@
 {
-	"name": "hapi-route-hierarchy",
-	"version": "1.0.0",
-	"description": "Hapi plugin that automatically sets up your routes based on your directory hierarchy.",
-	"main": "index.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"homepage": "https://github.com/traviswimer/hapi-route-hierarchy",
-	"author": {
-		"name": "Travis Wimer",
-		"email": "npm@traviswimer.com",
-		"url": "http://traviswimer.com"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/traviswimer/hapi-route-hierarchy.git"
-	},
-	"bugs": {
-		"url": "https://github.com/traviswimer/hapi-route-hierarchy/issues"
-	},
-	"licenses": [ {
-		"type": "MIT",
-		"url": "https://github.com/traviswimer/hapi-route-hierarchy/blob/master/LICENSE-MIT"
-	} ],
-	"engines": {
-		"node": ">= 4.4.7"
-	},
-	"keywords": [
-		"hapi",
-		"routes",
-		"hierarchy",
-		"directories",
-		"auto",
-		"automatic",
-		"structure"
-	]
+  "name": "hapi-route-hierarchy",
+  "version": "1.0.0",
+  "description": "Hapi plugin that automatically sets up your routes based on your directory hierarchy.",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha -w ./test/**/*.test.js"
+  },
+  "homepage": "https://github.com/traviswimer/hapi-route-hierarchy",
+  "author": {
+    "name": "Travis Wimer",
+    "email": "npm@traviswimer.com",
+    "url": "http://traviswimer.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/traviswimer/hapi-route-hierarchy.git"
+  },
+  "bugs": {
+    "url": "https://github.com/traviswimer/hapi-route-hierarchy/issues"
+  },
+  "license":  "MIT",
+  "engines": {
+    "node": ">= 4.4.7"
+  },
+  "keywords": [
+    "hapi",
+    "routes",
+    "hierarchy",
+    "directories",
+    "auto",
+    "automatic",
+    "structure"
+  ],
+  "devDependencies": {
+    "mocha": "3.1.2"
+  },
+  "dependencies": {
+    "glob": "7.1.1"
+  }
 }

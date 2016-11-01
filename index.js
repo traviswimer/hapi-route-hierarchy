@@ -1,8 +1,13 @@
 'use strict';
 
+let route_finder = require( './src/index' );
+
 const hapiRouteHierarchyPlugin = {
 	register: function( server, options, next ) {
-		next();
+		route_finder( options, function( routes ) {
+			server.route( routes );
+			next();
+		} );
 	}
 };
 
