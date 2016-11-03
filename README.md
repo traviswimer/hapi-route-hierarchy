@@ -18,7 +18,7 @@ my_hapi_project
         │   group_b.js
 ```
 
-Assume that `server.js` simply starts the Hapi server, after registering this plugin like this:
+Assume that `server.js` simply starts the Hapi server, after registering the plugin like this:
 
 ```javascript
 server.register(
@@ -83,6 +83,60 @@ In this way you can easily keep your routes organized by ensuring they always ma
 
 - Type: `object`
 - Description: Options that will be passed to the `glob` NPM module. Here is a [full list of available options](https://www.npmjs.com/package/glob#options).
+
+## Route files
+
+The route files can define route data in 3 different ways:
+
+### Object
+
+```javascript
+module.exports = {
+    method: 'GET',
+    path: '/some_path',
+    handler: function( request, reply ) {
+        // Do something...
+    }
+};
+```
+
+### Array
+
+```javascript
+module.exports = [
+    {
+        method: 'GET',
+        path: '/some_path',
+        handler: function( request, reply ) {
+            // Do something...
+        }
+    },
+    {
+        method: 'POST',
+        path: '/some_other_path',
+        handler: function( request, reply ) {
+            // Do something...
+        }
+    }
+];
+```
+
+### Function
+
+*Note that this variation allows you to access the Hapi server object*
+
+```javascript
+module.exports = function( server ){
+    return {
+        method: 'GET',
+        path: '/some_path',
+        handler: function( request, reply ) {
+            let some_fancy_plugin = request.server.plugins['some_fancy_plugin'];
+            reply( some_fancy_plugin.doFancyThings() );
+        }
+    };
+};
+```
 
 ## Contributing
 
