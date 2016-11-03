@@ -4,7 +4,7 @@ let route_finder = require( './src/index' );
 
 const hapiRouteHierarchyPlugin = {
 	register: function( server, options, next ) {
-		route_finder( options, function( routes ) {
+		route_finder( server, options, function( routes ) {
 			server.route( routes );
 			next();
 		} );
@@ -14,3 +14,5 @@ const hapiRouteHierarchyPlugin = {
 hapiRouteHierarchyPlugin.register.attributes = {
 	pkg: require( './package.json' )
 };
+
+module.exports = hapiRouteHierarchyPlugin;

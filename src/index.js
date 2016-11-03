@@ -7,13 +7,14 @@ const glob = require( "glob" );
  * Ensures routes are arrays and converts paths to match their parent directory
  * @param {string} root - The root directory used for routes
  * @param {string} file_path - The absolute path to the routes file
+ * @param {object} server - The Hapi server. We use it here to pass it to any route modules that export functions
  */
-function processRoute( root, file_path ) {
+function processRoute( server, root, file_path ) {
 	let routes = require( file_path );
 
 	// route can export a function
 	if ( typeof routes === 'function' ) {
-		routes = routes();
+		routes = routes( server );
 	}
 
 	// We want to wrap objects in an array
@@ -33,7 +34,16 @@ function processRoute( root, file_path ) {
 	return processed_routes;
 }
 
-module.exports = function( options, done ) {
+/**
+ * Generates list of routes in a directory based on a glob pattern
+ * @param {object} server - The Hapi server
+ * @param {object} options - The options to passed into the plugin
+ * @param {string} options.root - The root directory to search for routes
+ * @param {string} options.glob_pattern - The glob pattern for what should be considered a route file
+ * @param {string} options.glob_options - Options that will be passed to the "glob" npm package
+ * @param {function} done - Callback for when the routes have all been collected
+ */
+module.exports = function( server, options, done ) {
 	options = options || {};
 
 	// Ensure root is an absolute path
@@ -47,7 +57,7 @@ module.exports = function( options, done ) {
 	// Run the glob and get a flattened array of all the routes
 	glob( options.glob_pattern, glob_options, function( err, files ) {
 		let routes = files.reduce( function( routes_array, file ) {
-			return routes_array.concat( processRoute( root, file ) );
+			return routes_array.concat( processRoute( server, root, file ) );
 		}, [] );
 
 		done( routes );
