@@ -1,6 +1,6 @@
 {
   "name": "hapi-route-hierarchy",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Hapi plugin that automatically sets up your routes based on your directory hierarchy.",
   "main": "index.js",
   "scripts": {
@@ -19,9 +19,9 @@
   "bugs": {
     "url": "https://github.com/traviswimer/hapi-route-hierarchy/issues"
   },
-  "license":  "MIT",
+  "license": "MIT",
   "engines": {
-    "node": ">= 4.4.7"
+    "node": ">= 8.9.1"
   },
   "keywords": [
     "hapi",
@@ -33,9 +33,9 @@
     "structure"
   ],
   "devDependencies": {
-    "mocha": "3.1.2"
+    "mocha": "4.0.1"
   },
   "dependencies": {
-    "glob": "7.1.1"
+    "glob": "7.1.2"
   }
 }
