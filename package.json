@@ -1,6 +1,6 @@
 {
   "name": "hapi-route-hierarchy",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Hapi plugin that automatically sets up your routes based on your directory hierarchy.",
   "main": "index.js",
   "scripts": {

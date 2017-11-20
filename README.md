@@ -23,7 +23,7 @@ Assume that `server.js` simply starts the Hapi server, after registering the plu
 ```javascript
 server.register(
     {
-        register: require( 'hapi-route-hierarchy' ),
+        plugin: require( 'hapi-route-hierarchy' ),
         options: {
             root: __dirname + '/routes',
             glob_pattern: '**/*.js'
@@ -40,8 +40,8 @@ All the files under `/routes` include the data for all the routes. So for exampl
 module.exports = {
     method: 'GET',
     path: '/login',
-    handler: function( request, reply ) {
-        return reply( 'You have been authenticated!' );
+    handler: function( request, h ) {
+        return h.response( 'You have been authenticated!' );
     }
 };
 ```
@@ -52,8 +52,8 @@ This will result in a route at `/login`, which is rather boring, but what if we 
 module.exports = {
     method: 'GET',
     path: '/group_a',
-    handler: function( request, reply ) {
-        return reply( 'Here is a list of all users in group A!' );
+    handler: function( request, h ) {
+        return h.response( 'Here is a list of all users in group A!' );
     }
 };
 ```
@@ -94,7 +94,7 @@ The route files can define route data in 3 different ways:
 module.exports = {
     method: 'GET',
     path: '/some_path',
-    handler: function( request, reply ) {
+    handler: function( request, h ) {
         // Do something...
     }
 };
@@ -107,14 +107,14 @@ module.exports = [
     {
         method: 'GET',
         path: '/some_path',
-        handler: function( request, reply ) {
+        handler: function( request, h ) {
             // Do something...
         }
     },
     {
         method: 'POST',
         path: '/some_other_path',
-        handler: function( request, reply ) {
+        handler: function( request, h ) {
             // Do something...
         }
     }
@@ -130,9 +130,9 @@ module.exports = function( server ){
     return {
         method: 'GET',
         path: '/some_path',
-        handler: function( request, reply ) {
+        handler: function( request, h ) {
             let some_fancy_plugin = request.server.plugins['some_fancy_plugin'];
-            reply( some_fancy_plugin.doFancyThings() );
+            h.response( some_fancy_plugin.doFancyThings() );
         }
     };
 };
